@@ -1,17 +1,299 @@
+:root {
+    --bg-main: #f0f2f5;
+    --white: #ffffff;
+    --border: #dcdfe3;
+    --text-main: #333333;
+    --blue: #2185d0;
+    --red: #db2828;
+    --green: #21ba45;
+    --orange: #f2711c;
+    --purple-dark: #3b0066;
+    --purple-tooltip: #7b1fa2;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    padding: 30px;
+    padding-bottom: 80px; 
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.2s, opacity 0.2s;
+}
+button:hover { opacity: 0.9; }
+button:disabled { cursor: not-allowed; opacity: 0.5; }
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 280px; 
+    gap: 20px;
+    align-items: start;
+}
+
+@media (max-width: 650px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.left-panel {
+    background: var(--white);
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border: 1px solid var(--border);
+}
+
+.add-row {
+    display: flex;
+    padding: 20px;
+    border-bottom: 2px solid var(--border);
+    gap: 15px;
+}
+.add-row input {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 16px;
+    outline: none;
+}
+.add-row input:focus { border-color: var(--blue); }
+
+.btn-add {
+    background-color: var(--blue);
+    color: white;
+    font-weight: bold;
+    padding: 0 25px;
+    font-size: 16px;
+}
+
+.item-list { list-style: none; }
+
+.item {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border);
+    gap: 15px;
+}
+.item:last-child { border-bottom: none; }
+
+.item-name {
+    flex-grow: 1;
+    font-size: 18px;
+    font-weight: 500;
+}
+.item.bought .item-name {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.edit-input {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid var(--blue);
+    border-radius: 4px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.btn-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    color: white;
+    font-size: 20px;
+    line-height: 1;
+}
+.btn-minus { background-color: var(--red); }
+.btn-plus { background-color: var(--green); }
+
+.quantity-badge {
+    background-color: var(--bg-main);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    min-width: 35px;
+    text-align: center;
+}
+
+.actions {
+    display: flex;
+    gap: 5px;
+    min-width: 130px;
+    justify-content: flex-end;
+}
+.btn-status {
+    background-color: var(--bg-main);
+    color: #333;
+    border: 1px solid var(--border);
+    padding: 8px 12px;
+    font-weight: bold;
+}
+.btn-delete {
+    background-color: var(--red);
+    color: white;
+    padding: 8px 12px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.right-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.summary-card {
+    background: var(--white);
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border: 1px solid var(--border);
+}
+.summary-card h2 {
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border);
+    font-size: 18px;
+}
+.tags-container {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
 .product-item {
-	background-color: gray;
-	display: inline-block;
-	height: 25px;
-	padding: 5px;
-	border-radius: 5px;
+    background-color: #e4e4e4;
+    display: inline-flex; 
+    align-items: center;
+    gap: 10px;
+    height: 30px; 
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+.product-item.crossed {
+    text-decoration: line-through;
+    color: #888;
 }
 
 .amount {
-	background-color: yellow;
-	border-radius: 10px;
-	
-	display: inline-block;
-	height: 20px;
-	width: 20px;
-	text-align: center;
+    background-color: var(--orange);
+    color: white;
+    border-radius: 10px; 
+    display: inline-flex; 
+    align-items: center;
+    justify-content: center;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    font-size: 12px;
+    text-decoration: none !important; 
+}
+
+[data-tooltip] {
+    position: relative;
+}
+[data-tooltip]::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 120%; 
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    transform-origin: bottom center; 
+    background-color: var(--purple-tooltip);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 8px; 
+    font-size: 12px;
+    font-weight: normal;
+    white-space: nowrap;
+    opacity: 0;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    pointer-events: none;
+    z-index: 100;
+}
+[data-tooltip]:hover::before {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+}
+
+.author-badge {
+    position: fixed;
+    bottom: 0;
+    left: 20px;
+    background-color: var(--purple-dark);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px 10px 0 0; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 40px; 
+    overflow: hidden;
+    transition: height 0.5s ease, background-color 0.5s ease;
+    z-index: 1000;
+    cursor: default;
+}
+
+.badge-title {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.badge-name {
+    margin-top: 15px;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.author-badge:hover {
+    height: 75px; 
+    background-color: var(--purple-tooltip); 
+}
+
+@media print {
+    body { background-color: white; }
+    
+    .author-badge {
+        position: relative;
+        left: 0;
+        margin-top: 30px;
+        background-color: white !important; 
+        color: black;
+        border: 2px solid var(--purple-dark); 
+        height: auto; 
+        display: inline-flex;
+    }
+
+    .badge-title {
+        display: none; 
+    }
+
+    .badge-name {
+        display: block;
+        margin-top: 0;
+        font-weight: bold; 
+    }
 }
