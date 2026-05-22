@@ -1,90 +1,41 @@
 <!DOCTYPE html>
-<html>
-<head lang="uk">
+<html lang="uk">
+<head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BuyList - Кошик покупок</title>
-
-
     <link rel="stylesheet" type="text/css" href="main.css" />
 </head>
 <body>
-	<div class="container">
+
+    <div class="container">
         <main class="left-panel">
             <div class="add-row">
-                <input type="text" placeholder="Назва товару" aria-label="Введіть назву нового товару">
-                <button class="btn-add" data-tooltip="Додати товар до списку">Додати</button>
+                <input type="text" id="new-item-input" placeholder="Назва товару" aria-label="Введіть назву нового товару">
+                <button class="btn-add" id="btn-add-item" data-tooltip="Додати товар до списку">Додати</button>
             </div>
 
-            <ul class="item-list">
-                <li class="item bought">
-                    <span class="item-name">Помідори</span>
-                    <div class="controls">
-                        <span class="quantity-badge">2</span>
-                    </div>
-                    <div class="actions">
-                        <button class="btn-status" data-tooltip="Повернути до списку">Не куплено</button>
-                    </div>
-                </li>
-
-                <li class="item">
-                    <span class="item-name">Печиво</span>
-                    <div class="controls">
-                        <button class="btn-circle btn-minus" data-tooltip="Зменшити" aria-label="Зменшити кількість">-</button>
-                        <span class="quantity-badge">2</span>
-                        <button class="btn-circle btn-plus" data-tooltip="Збільшити" aria-label="Збільшити кількість">+</button>
-                    </div>
-                    <div class="actions">
-                        <button class="btn-status" data-tooltip="Відмітити як куплене">Куплено</button>
-                        <button class="btn-delete" data-tooltip="Видалити" aria-label="Видалити товар">×</button>
-                    </div>
-                </li>
-
-                <li class="item">
-                    <input type="text" class="edit-input" value="Сир" aria-label="Редагувати назву товару">
-                    <div class="controls">
-                        <button class="btn-circle btn-minus" disabled data-tooltip="Мінімальна кількість" aria-label="Зменшити кількість">-</button>
-                        <span class="quantity-badge">1</span>
-                        <button class="btn-circle btn-plus" data-tooltip="Збільшити" aria-label="Збільшити кількість">+</button>
-                    </div>
-                    <div class="actions">
-                        <button class="btn-status" data-tooltip="Відмітити як куплене">Куплено</button>
-                        <button class="btn-delete" data-tooltip="Видалити" aria-label="Видалити товар">×</button>
-                    </div>
-                </li>
-            </ul>
+            <ul class="item-list" id="item-list"></ul>
         </main>
 
         <aside class="right-panel">
             <section class="summary-card">
                 <h2>Залишилося</h2>
-                <div class="tags-container">
-                    <span class="product-item">
-                        Печиво
-                        <span class="amount">2</span>
-                    </span>
-                    <span class="product-item">
-                        Сир
-                        <span class="amount">1</span>
-                    </span>
-                </div>
+                <div class="tags-container" id="stats-left"></div>
             </section>
 
             <section class="summary-card">
                 <h2>Куплено</h2>
-                <div class="tags-container">
-                    <span class="product-item crossed">
-                        Помідори
-                        <span class="amount">2</span>
-                    </span>
-                </div>
+                <div class="tags-container" id="stats-bought"></div>
             </section>
         </aside>
     </div>
 
     <div class="author-badge">
         <span class="badge-title">BuyList</span>
-        <span class="badge-name">Ангеліна Білик</span>
+        <span class="badge-name">Твоє Ім'я та Прізвище</span>
     </div>
 
+    <script src="script.js"></script>
 </body>
 </html>
