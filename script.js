@@ -4,7 +4,12 @@ const itemListElement = document.getElementById('item-list');
 const statsLeftElement = document.getElementById('stats-left');
 const statsBoughtElement = document.getElementById('stats-bought');
 
-
+// Бонус
+let items = JSON.parse(localStorage.getItem('buyListState')) || [
+    { id: 1, name: 'Помідори', quantity: 2, isBought: true },
+    { id: 2, name: 'Печиво', quantity: 2, isBought: false },
+    { id: 3, name: 'Сир', quantity: 1, isBought: false }
+];
 
 let editingId = null;
 
